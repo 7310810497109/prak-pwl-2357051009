@@ -12,6 +12,7 @@
                 <th>ID</th>
                 <th>Nama Mata Kuliah</th>
                 <th>SKS</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
