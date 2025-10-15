@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\UserModel;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -43,5 +45,33 @@ class UserController extends Controller
         return $this->join('kelas','kelas.id','=','user.kelas_id')
                     ->select('user.*','kelas.nama_kelas as nama_kelas')
                     ->get();
+    }
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $kelas = Kelas::all();
+        return view('edit.user', compact('user', 'kelas'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user->update([
+    'nama' => $request->nama,
+    'nim' => $request->nim,
+    'kelas_id' => $request->kelas_id,
+]);
+
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        return redirect()->route('user.list')->with('success', 'Data user berhasil diperbarui!');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('user.list')->with('success', 'Data user berhasil dihapus!');
     }
 }

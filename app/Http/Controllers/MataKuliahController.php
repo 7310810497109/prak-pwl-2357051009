@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MataKuliah;
+use App\Models\Kelas;
 
 class MataKuliahController extends Controller
 {
@@ -29,7 +30,8 @@ class MataKuliahController extends Controller
     }
     public function edit($id){
         $mk = MataKuliah::findorFail($id);
-        return view ('edit_mk', ['title'=>'Edit Mata Kuliah', 'mk'=>$mk]);
+        $kelas = Kelas::all();
+        return view ('edit_mk', ['title'=>'Edit Mata Kuliah', 'mk'=>$mk, 'kelas'=>$kelas]);
 
     }
     public function update(Request $request, $id){
@@ -48,6 +50,6 @@ class MataKuliahController extends Controller
     public function destroy($id){
         $mk = MataKuliah::findorFail($id);
         $mk->delete();
-        return redirect()->to('/matakuliah');
+        return redirect()->to('/matakuliah')->with('success', 'Mata Kuliah deleted successfully');
     }
 }
