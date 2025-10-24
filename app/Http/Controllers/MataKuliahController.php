@@ -22,11 +22,14 @@ class MataKuliahController extends Controller
     }
     public function store(Request $request)
     {
-        MataKuliah::create([
-            'nama_mk' => $request->input('nama_mk'),
-            'sks' => $request->input('sks'),
+        $request->validate([
+            'nama_mk' => 'required|string',
+            'sks'     => 'required|integer|min:1|max:3',
         ]);
-        return redirect()->to('/mata_kuliah');
+
+        MataKuliah::create($request->only('nama_mk', 'sks'));
+
+        return redirect()->to('/matakuliah')->with('success', 'Mata Kuliah created successfully');
     }
     public function edit($id){
         $mk = MataKuliah::findorFail($id);

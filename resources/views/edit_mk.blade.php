@@ -18,32 +18,4 @@
         </button>
     </form>
 </div>
-
-<!-- <div class="container">
-    <h1>Edit Data User</h1>
-
-    <form action="{{ route('user.update', $mk->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <label for="nama">Nama:</label><br>
-        <input type="text" id="nama" name="nama" value="{{ $mk->nama }}" required><br><br>
-
-        <label for="nim">NIM:</label><br>
-        <input type="text" id="nim" name="nim" value="{{ $mk->nim }}" required><br><br>
-
-        <label for="kelas_id">Kelas:</label><br>
-        <select name="kelas_id" id="kelas_id" required>
-            @foreach ($kelas as $kelasItem)
-                <option value="{{ $kelasItem->id }}" {{ $mk->kelas_id == $kelasItem->id ? 'selected' : '' }}>
-                    {{ $kelasItem->nama_kelas }}
-                </option>
-            @endforeach
-        </select><br><br>
-
-        <button type="submit" style="background-color: #00b894; color: white; padding: 8px 14px; border: none; border-radius: 8px;">
-            Update
-        </button>
-    </form>
-</div> -->
 @endsection

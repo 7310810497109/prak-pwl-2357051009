@@ -48,7 +48,7 @@ class UserController extends Controller
     }
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = UserModel::findOrFail($id);
         $kelas = Kelas::all();
         return view('edit.user', compact('user', 'kelas'));
     }
@@ -61,7 +61,7 @@ class UserController extends Controller
     'kelas_id' => $request->kelas_id,
 ]);
 
-        $user = User::findOrFail($id);
+        $user = UserModel::findOrFail($id);
         $user->update($request->all());
 
         return redirect()->route('user.list')->with('success', 'Data user berhasil diperbarui!');
@@ -69,7 +69,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        $user = UserModel::findOrFail($id);
         $user->delete();
 
         return redirect()->route('user.list')->with('success', 'Data user berhasil dihapus!');
